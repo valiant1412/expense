@@ -1,0 +1,39 @@
+@import "../../App";
+.sidebar-menu{
+    background-color: $myBlue;
+    height:95%;
+    color:white;
+    padding-left: 10%;
+    border-radius:30px;
+    box-shadow: $shadow;
+}
+.productName{
+    padding-top:10%;
+    margin-bottom:5%;
+    
+}
+.menu-element{
+    font-size:15px;
+    margin:0;
+    margin-left:20%;
+}
+.menu-icon{
+    margin-top:10%;
+    padding:0 !important ;
+}
+.p-2{
+    width:100%;
+}
+.p-2:hover{
+    cursor:pointer;
+    text-decoration: underline;
+    color: $myOrange
+}
+
+.hidden{
+    display:none;
+}
+.shorten-menu{
+    display:flex;
+    justify-content: center;
+}
