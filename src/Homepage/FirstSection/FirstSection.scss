@@ -1,0 +1,29 @@
+@import '../../App';
+
+@mixin firstSectionBox {
+    background-color:$myBlue;
+    box-shadow: $shadow;
+    color:white;
+    padding:1em 0 1em 0;
+    border-radius: 20px;
+}
+marquee {
+    margin-bottom: 1rem;
+}
+.sum{
+    @include firstSectionBox;
+}
+.real-time{
+    @include firstSectionBox;
+    background-color: $myOrange;
+}
+.calendar-container{
+    width:50%;
+    padding: 1em 0 1em 0;
+    background-color:#03a603;
+    border-radius:20px;
+}
+.day,.sum-money{
+    font-size:30px;
+    font-weight: 500;
+}

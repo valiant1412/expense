@@ -4,6 +4,7 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { SideBar_Menu } from "./SideBar-Menu/ExpandMenu/SideBar_Menu";
 import { ShortenMenu } from "./SideBar-Menu/ShortenMenu/ShortenMenu";
+import Homepage from "./Page/Homepage";
 import { useState } from "react";
 function App() {
   const [reduce, setReduced] = useState(true);
@@ -21,6 +22,9 @@ function App() {
           <ShortenMenu parentCallback={resizeMenu} />
         )}
       </nav>
+      <article nav className={reduce ? "article" : "article expand-article"}>
+        <Homepage />
+      </article>
     </div>
   );
 }

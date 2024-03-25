@@ -3,15 +3,10 @@
 
 }
 
-html,
-body {
-  background-color: #FDFBE8;
-}
-
 .nav {
   position: fixed;
   height: 100vh;
-  width: 18%;
+  width: 17%;
   display: flex;
   align-items: center;
   left: 2%;
@@ -20,6 +15,16 @@ body {
 .short-nav {
   width: 7%;
 
+}
+
+.article {
+  width: 78%;
+  margin-left: 22%;
+}
+
+.expand-article {
+  margin-left: 13%;
+  width: 87%;
 }
 
 @keyframes App-logo-spin {
