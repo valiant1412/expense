@@ -34,7 +34,7 @@ export function FirstSection() {
           <div className="sum-money">Tổng số tiền: 100000</div>
         </Col>
         <Col xs="2"></Col>
-        <Col xs="3" className="d-flex flex-column align-items-center real-time">
+        <Col xs="4" className="d-flex flex-column align-items-center real-time">
           <div className="d-flex flex-column align-items-center calendar-container">
             <div className="month">{month}</div>
             <div className="day">{day}</div>

@@ -1,0 +1,15 @@
+@import '../../App';
+.statistic{
+    width:90%;
+    margin:1em 0 1em 0;
+    border:$border;
+    background-color: white;
+    border-radius: 20px;
+    box-shadow: $shadow;
+    font-size:30px;
+}
+.line-horizon{
+    width:50%;
+    border-top: 2px solid black;
+    margin: 1.5em 0 0.5em 0;
+}
