@@ -10,7 +10,6 @@ export function SecondSection(props) {
   };
   return (
     <Container className="homepage-section2">
-      <Row className="line-horizon"></Row>
       <Row className="d-flex justify-content-between align-items-center">
         <Col xs="5">
           <h1>Bảng số liệu</h1>
@@ -23,12 +22,14 @@ export function SecondSection(props) {
           </DropdownButton>
         </Col>
       </Row>
+      <Row className="line-horizon"></Row>
       <Row className="statistic">
         <Monthly_line />
       </Row>
       <Row xs="12">
         <h1>Bảng nguyên nhân</h1>
       </Row>
+      <Row className="line-horizon"></Row>
       <Row>
         <Col xs="5">
           <SpendingPieChart />

@@ -1,5 +1,6 @@
 import { Container } from "react-bootstrap";
 import { Row } from "react-bootstrap";
+import { Link } from "react-router-dom";
 import * as Icon from "react-bootstrap-icons";
 import { Stack } from "react-bootstrap";
 import "../ExpandMenu/SideBar_Menu.scss";
@@ -12,30 +13,30 @@ export function ShortenMenu({ parentCallback }) {
       <Row className="shorten-menu">
         <Row>
           <Stack gap={3}>
-            <div
+            <Link
               className="p-2 d-flex align-items-center menu-icon"
               onClick={resizeMenu}
             >
               <Icon.List color="white" size="40" />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/" className="p-2 d-flex align-items-center">
               <Icon.HouseDoor />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/record" className="p-2 d-flex align-items-center">
               <Icon.FileEarmark />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/report" className="p-2 d-flex align-items-center">
               <Icon.BarChartLine />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/setting" className="p-2 d-flex align-items-center">
               <Icon.Gear />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/account" className="p-2 d-flex align-items-center">
               <Icon.Person />
-            </div>
-            <div className="p-2 d-flex align-items-center">
+            </Link>
+            <Link to="/logout" className="p-2 d-flex align-items-center">
               <Icon.BoxArrowRight />
-            </div>
+            </Link>
           </Stack>
         </Row>
       </Row>
