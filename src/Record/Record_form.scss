@@ -9,4 +9,43 @@
 .Add-btn{
     width:15%;
     background-color: $myBlue;
+        
+}
+.add-record-area{
+    margin-bottom: 1em;
+}
+.category-btn-group{
+    width:40%;
+    padding:0;
+}
+.category-createForm-btn{
+    background-color: $myBlue;
+    margin-left:0.8em;
+}
+.add-record-form{
+    width:95%;
+    background-color: white;
+    padding:2em;
+    border-radius:20px;
+    box-shadow: $shadow;
+    
+}
+.mb-3{
+    margin-top:1em;
+    font-size: 20px;
+    .form-control{
+        border:$border;
+    }
+}
+#exampleFormControlTextarea1{
+    border:$border;
+}
+
+.save-btn,.cancel-btn{
+    margin-left:0.8em;
+    margin-top:1em;
+}
+.cancel-btn{
+    background-color: white;
+    border:1px solid black;
 }
