@@ -6,6 +6,7 @@ import { SideBar_Menu } from "./SideBar-Menu/ExpandMenu/SideBar_Menu";
 import { ShortenMenu } from "./SideBar-Menu/ShortenMenu/ShortenMenu";
 import Homepage from "./Page/Homepage";
 import Record from "./Page/Record";
+import { Record_form } from "./Record/Record_form";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 function App() {
@@ -29,6 +30,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Homepage />} />
             <Route path="/record" element={<Record />} />
+            <Route path="/addrecord" element={<Record_form />} />
           </Routes>
         </article>
       </div>

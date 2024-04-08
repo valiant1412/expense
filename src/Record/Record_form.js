@@ -6,56 +6,51 @@ import {
   ToggleButtonGroup,
   ToggleButton,
   Form,
-  FloatingLabel,
 } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "./Record_form.scss";
+import { Link } from "react-router-dom";
 export function Record_form() {
   return (
     <Container>
       <Row className="header1">
-        <h1>Bản ghi</h1>
+        <h1>Tạo bản ghi</h1>
       </Row>
 
-      <Row className="add-record-area">
-        <Button
-          className="Add-btn d-flex align-items-center justify-content-around"
-          variant="primary"
-        >
-          <Icon.Plus fontSize={30} /> Thêm mới
-        </Button>{" "}
-      </Row>
+      <Row className="add-record-area"></Row>
       <Row>
         <Form className="add-record-form d-flex flex-column justify-content-between">
           <Row>
-            <ToggleButtonGroup
-              className="category-btn-group"
-              type="radio"
-              name="options"
-              defaultValue={1}
-            >
-              <ToggleButton
-                className="category-createForm-btn"
-                id="tbg-radio-1"
-                value={1}
+            <Col xs="7">
+              <ToggleButtonGroup
+                className="category-btn-group"
+                type="radio"
+                name="options"
+                defaultValue={1}
               >
-                Thu
-              </ToggleButton>
-              <ToggleButton
-                className="category-createForm-btn"
-                id="tbg-radio-2"
-                value={2}
-              >
-                Chi
-              </ToggleButton>
-              <ToggleButton
-                className="category-createForm-btn"
-                id="tbg-radio-3"
-                value={3}
-              >
-                Nợ
-              </ToggleButton>
-            </ToggleButtonGroup>
+                <ToggleButton
+                  className="category-createForm-btn"
+                  id="tbg-radio-1"
+                  value={1}
+                >
+                  Thu
+                </ToggleButton>
+                <ToggleButton
+                  className="category-createForm-btn"
+                  id="tbg-radio-2"
+                  value={2}
+                >
+                  Chi
+                </ToggleButton>
+                <ToggleButton
+                  className="category-createForm-btn"
+                  id="tbg-radio-3"
+                  value={3}
+                >
+                  Nợ
+                </ToggleButton>
+              </ToggleButtonGroup>
+            </Col>
           </Row>
           <Form.Group className="mb-3" controlId="formGroupEmail">
             <Form.Label>Thời gian</Form.Label>
@@ -86,18 +81,26 @@ export function Record_form() {
             ></textarea>
           </Form.Group>
           <Row>
-            <Button
-              className="Add-btn save-btn
+            <Col xs="3">
+              <Link to="/record">
+                <Button
+                  className="Add-btn save-btn
               d-flex
               align-items-center
               justify-content-around"
-              variant="primary"
-            >
-              Lưu
-            </Button>{" "}
-            <Button className="Add-btn cancel-btn" variant="light">
-              Trở về
-            </Button>{" "}
+                  variant="primary"
+                >
+                  Lưu
+                </Button>{" "}
+              </Link>
+            </Col>
+            <Col xs="3">
+              <Link to="/record">
+                <Button className="Add-btn cancel-btn" variant="light">
+                  Trở về
+                </Button>{" "}
+              </Link>
+            </Col>
           </Row>
         </Form>
       </Row>

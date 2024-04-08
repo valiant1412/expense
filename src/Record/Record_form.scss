@@ -6,16 +6,17 @@
     }
         padding-top: 1em;
 }
-.Add-btn{
-    width:15%;
+.Add-btn {
+    width: 15%;
     background-color: $myBlue;
-        
+
 }
-.add-record-area{
+
+.add-record-area {
     margin-bottom: 1em;
 }
 .category-btn-group{
-    width:40%;
+    width:100%;
     padding:0;
 }
 .category-createForm-btn{
@@ -42,8 +43,12 @@
 }
 
 .save-btn,.cancel-btn{
-    margin-left:0.8em;
+    width:100%;
     margin-top:1em;
+}
+.save-btn{
+    padding-left:2em;
+    padding-right:2em;
 }
 .cancel-btn{
     background-color: white;
