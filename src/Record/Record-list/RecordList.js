@@ -5,47 +5,40 @@ import {
   Button,
   ToggleButton,
   ToggleButtonGroup,
-  FloatingLabel,
-  Dropdown,
   Form,
 } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "./RecordList.scss";
 import { Link } from "react-router-dom";
-import { useState, useRef, useEffect } from "react";
+import { RecordItem } from "../Record-item/RecordItem";
+import { useState } from "react";
+import { CategoryCreateForm } from "../../component/CategoryCreateForm/CategoryCreateForm";
+
 export function RecordList() {
-  const handleAlert = (value) => {
-    if (value === "all") {
-      var result = window.confirm(
-        "Tất cả bản ghi của bạn sẽ bị xóa, bạn có muốn tiếp tục ?"
-      );
-      if (result) {
-        alert("Xóa thành công!");
-      }
-    } else {
-      window.confirm("Bản ghi này sẽ bị xóa, bạn có muốn tiếp tục ?");
-    }
+  const count: int = 0;
+  const [isEditing, setIsEditing] = useState(false);
+  const [date, setDate] = useState("04/04/2024");
+  const [purpose, setPurpose] = useState("Ăn sáng");
+  const [amount, setAmount] = useState("80");
+  const [note, setNote] = useState("Hello, My name is Duke");
+  const handleEdit = (value) => {
+    setIsEditing(value);
   };
-  const [showDropDownItem, setShowDropDownItem] = useState(false);
-  const dropdownRef = useRef(null);
-
-  const handleClick = () => {
-    setShowDropDownItem((prevState) => !prevState);
+  const handleDateChange = (event) => {
+    setDate(event.target.value);
   };
 
-  const handleOutsideClick = (event) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-      setShowDropDownItem(false);
-    }
+  const handlePurposeChange = (event) => {
+    setPurpose(event.target.value);
   };
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleOutsideClick);
+  const handleAmountChange = (event) => {
+    setAmount(event.target.value);
+  };
+  const handleNoteChange = (event) => {
+    setNote(event.target.value);
+  };
 
-    return () => {
-      document.removeEventListener("mousedown", handleOutsideClick);
-    };
-  }, []);
   return (
     <Container>
       <Row className="header1">
@@ -64,34 +57,7 @@ export function RecordList() {
       </Row>
       <Row>
         <Col style={{ padding: 0 }} xs="7">
-          <ToggleButtonGroup
-            className="category-btn-group"
-            type="radio"
-            name="options"
-            defaultValue={1}
-          >
-            <ToggleButton
-              className="category-createForm-btn category-btn-list"
-              id="tbg-radio-1"
-              value={1}
-            >
-              Thu
-            </ToggleButton>
-            <ToggleButton
-              className="category-createForm-btn"
-              id="tbg-radio-2"
-              value={2}
-            >
-              Chi
-            </ToggleButton>
-            <ToggleButton
-              className="category-createForm-btn category-btn-list"
-              id="tbg-radio-3"
-              value={3}
-            >
-              Nợ
-            </ToggleButton>
-          </ToggleButtonGroup>
+          <CategoryCreateForm roundCorner={true} />
         </Col>
         <Col xs="2"></Col>
         <Col xs="3">
@@ -103,65 +69,80 @@ export function RecordList() {
           />
         </Col>
       </Row>
-      <Row className="board-list d-flex flex-row ">
-        <Col xs="11" className="d-flex flex-column align-items-center">
-          <Row className="board-list-elements">
-            <Row>
-              <Col xs="11">
-                <h2>04/04/2024</h2>
-              </Col>
-              <Col xs="1">
-                <Icon.ThreeDotsVertical
-                  className="dropbtn"
-                  onClick={() => handleClick()}
-                />
-                <div
-                  ref={dropdownRef}
-                  id="myDropdown"
-                  className={
-                    showDropDownItem
-                      ? "dropdown-content"
-                      : "dropdown-content hidden"
-                  }
-                >
-                  <div className="dropdown-item d-flex justify-content-between align-items-center">
-                    <Col xs="1"></Col>
-                    <Col xs="3" className="d-flex justify-content-between">
-                      <Icon.PencilSquare color="#428914" />
-                    </Col>
-                    <Col xs="8">Chỉnh sửa</Col>
-                  </div>
-                  <div className="dropdown-item d-flex justify-content-between align-items-center">
-                    <Col xs="1"></Col>
-                    <Col xs="3" className="d-flex justify-content-between">
-                      <Icon.TrashFill color="#F93636" />
-                    </Col>
-                    <Col
-                      xs="8"
-                      className="delete"
-                      onClick={() => handleAlert("all")}
-                    >
-                      Xóa
-                    </Col>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-
-            <div className="record-item d-flex flex-column justify-content-center">
-              <Row className="purpose-and-money">
-                <Col xs="7" style={{ borderRight: "1px dashed black" }}>
-                  <h4>Ăn sáng</h4>
-                </Col>
-                <Col xs="2"></Col>
-                <Col xs="3">80</Col>
-              </Row>
+      <Row>
+        <Form className="board-list d-flex flex-row ">
+          <Col xs="10" className="d-flex flex-column align-items-center">
+            <Row className="board-list-elements">
               <Row>
-                <p className="note-item">Hello, my name is Duke</p>
+                <Col xs="11">
+                  {isEditing ? (
+                    <Form.Control
+                      type="date"
+                      style={{ border: "1px solid black" }}
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                    />
+                  ) : (
+                    <h2>{date}</h2>
+                  )}
+                </Col>
+                <Col xs="1">
+                  <RecordItem parentCallBack={handleEdit} />
+                </Col>
               </Row>
+
+              <div className="record-item d-flex flex-column justify-content-center">
+                <Row className="purpose-and-money">
+                  <Col xs="7" style={{ borderRight: "1px dashed black" }}>
+                    {isEditing ? (
+                      <Form.Control
+                        style={{ border: "1px solid black" }}
+                        type="text"
+                        value={purpose}
+                        onChange={(e) => setPurpose(e.target.value)}
+                      />
+                    ) : (
+                      <h4>{purpose}</h4>
+                    )}
+                  </Col>
+                  <Col xs="2"></Col>
+                  <Col xs="3">
+                    {isEditing ? (
+                      <Form.Control
+                        style={{ border: "1px solid black" }}
+                        type="text"
+                        value={amount}
+                        onChange={(e) => setAmount(e.target.value)}
+                      />
+                    ) : (
+                      <span>{amount}</span>
+                    )}
+                  </Col>
+                </Row>
+                <Row>
+                  <p className="note-item">
+                    {isEditing ? (
+                      <Form.Control
+                        style={{ border: "1px solid black" }}
+                        type="text"
+                        value={note}
+                        onChange={(e) => setNote(e.target.value)}
+                      />
+                    ) : (
+                      <span>{note}</span>
+                    )}
+                  </p>
+                </Row>
+              </div>
+            </Row>
+          </Col>
+          <Col xs="2">
+            <div className="save-and-cancel-btn d-flex justify-content-between">
+              <Icon.FloppyFill color="#0d6efd" />
+              <Icon.XCircle color="red" />
             </div>
-          </Row>
-        </Col>
+          </Col>
+        </Form>
       </Row>
     </Container>
   );

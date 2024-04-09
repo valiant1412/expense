@@ -1,18 +1,11 @@
-import {
-  Container,
-  Row,
-  Button,
-  Col,
-  ToggleButtonGroup,
-  ToggleButton,
-  Form,
-} from "react-bootstrap";
+import { Container, Row, Button, Col, Form } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import "./Record_form.scss";
 import { Link } from "react-router-dom";
+import { CategoryCreateForm } from "../component/CategoryCreateForm/CategoryCreateForm";
 export function Record_form() {
   return (
-    <Container>
+    <>
       <Row className="header1">
         <h1>Tạo bản ghi</h1>
       </Row>
@@ -22,34 +15,7 @@ export function Record_form() {
         <Form className="add-record-form d-flex flex-column justify-content-between">
           <Row>
             <Col xs="7">
-              <ToggleButtonGroup
-                className="category-btn-group"
-                type="radio"
-                name="options"
-                defaultValue={1}
-              >
-                <ToggleButton
-                  className="category-createForm-btn"
-                  id="tbg-radio-1"
-                  value={1}
-                >
-                  Thu
-                </ToggleButton>
-                <ToggleButton
-                  className="category-createForm-btn"
-                  id="tbg-radio-2"
-                  value={2}
-                >
-                  Chi
-                </ToggleButton>
-                <ToggleButton
-                  className="category-createForm-btn"
-                  id="tbg-radio-3"
-                  value={3}
-                >
-                  Nợ
-                </ToggleButton>
-              </ToggleButtonGroup>
+              <CategoryCreateForm roundCorner={false} />
             </Col>
           </Row>
           <Form.Group className="mb-3" controlId="formGroupEmail">
@@ -104,6 +70,6 @@ export function Record_form() {
           </Row>
         </Form>
       </Row>
-    </Container>
+    </>
   );
 }

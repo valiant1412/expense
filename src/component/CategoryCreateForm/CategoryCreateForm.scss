@@ -1,0 +1,13 @@
+@import '../../App.scss';
+.category-btn-group {
+    width: 100%;
+    padding: 0;
+}
+
+.category-createForm-btn {
+    background-color: $myBlue;
+    margin-left: 0.8em;
+}
+.category-btn-list {
+    border-radius: 0;
+}
