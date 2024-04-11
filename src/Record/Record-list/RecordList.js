@@ -21,22 +21,39 @@ export function RecordList() {
   const [purpose, setPurpose] = useState("Ăn sáng");
   const [amount, setAmount] = useState("80");
   const [note, setNote] = useState("Hello, My name is Duke");
+  const [isModified, setIsModified] = useState(false);
   const handleEdit = (value) => {
     setIsEditing(value);
   };
+  const handleInputChange = () => {
+    setIsModified(true);
+  };
+  const handleSave = () => {
+    if (isModified) {
+      const saveConfirm = window.confirm("Bạn muốn lưu thay đổi này ?");
+      if (saveConfirm === true) {
+        alert("Dữ liệu đã lưu thành công");
+      }
+    }
+    setIsModified(false);
+  };
   const handleDateChange = (event) => {
     setDate(event.target.value);
+    setIsModified(true);
   };
 
   const handlePurposeChange = (event) => {
     setPurpose(event.target.value);
+    setIsModified(true);
   };
 
   const handleAmountChange = (event) => {
     setAmount(event.target.value);
+    setIsModified(true);
   };
   const handleNoteChange = (event) => {
     setNote(event.target.value);
+    setIsModified(true);
   };
 
   return (
@@ -70,7 +87,7 @@ export function RecordList() {
         </Col>
       </Row>
       <Row>
-        <Form className="board-list d-flex flex-row ">
+        <Form className="board-list d-flex flex-row">
           <Col xs="10" className="d-flex flex-column align-items-center">
             <Row className="board-list-elements">
               <Row>
@@ -80,14 +97,20 @@ export function RecordList() {
                       type="date"
                       style={{ border: "1px solid black" }}
                       value={date}
-                      onChange={(e) => setDate(e.target.value)}
+                      onChange={(e) => {
+                        setDate(e.target.value);
+                        setIsModified(true);
+                      }}
                     />
                   ) : (
                     <h2>{date}</h2>
                   )}
                 </Col>
                 <Col xs="1">
-                  <RecordItem parentCallBack={handleEdit} />
+                  <RecordItem
+                    parentCallBack={handleEdit}
+                    isEditing={isEditing}
+                  />
                 </Col>
               </Row>
 
@@ -99,7 +122,10 @@ export function RecordList() {
                         style={{ border: "1px solid black" }}
                         type="text"
                         value={purpose}
-                        onChange={(e) => setPurpose(e.target.value)}
+                        onChange={(e) => {
+                          setPurpose(e.target.value);
+                          setIsModified(true);
+                        }}
                       />
                     ) : (
                       <h4>{purpose}</h4>
@@ -112,7 +138,10 @@ export function RecordList() {
                         style={{ border: "1px solid black" }}
                         type="text"
                         value={amount}
-                        onChange={(e) => setAmount(e.target.value)}
+                        onChange={(e) => {
+                          setAmount(e.target.value);
+                          setIsModified(true);
+                        }}
                       />
                     ) : (
                       <span>{amount}</span>
@@ -126,7 +155,10 @@ export function RecordList() {
                         style={{ border: "1px solid black" }}
                         type="text"
                         value={note}
-                        onChange={(e) => setNote(e.target.value)}
+                        onChange={(e) => {
+                          setNote(e.target.value);
+                          setIsModified(true);
+                        }}
                       />
                     ) : (
                       <span>{note}</span>
@@ -137,10 +169,15 @@ export function RecordList() {
             </Row>
           </Col>
           <Col xs="2">
-            <div className="save-and-cancel-btn d-flex justify-content-between">
-              <Icon.FloppyFill color="#0d6efd" />
-              <Icon.XCircle color="red" />
-            </div>
+            {isEditing && (
+              <div className="save-and-cancel-btn d-flex justify-content-between">
+                <Icon.FloppyFill
+                  onClick={() => handleSave()}
+                  color={isModified ? "#0d6efd" : ""}
+                />
+                <Icon.XCircle color="red" onClick={() => handleEdit(false)} />
+              </div>
+            )}
           </Col>
         </Form>
       </Row>

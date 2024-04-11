@@ -2,9 +2,25 @@ import { Container, Col } from "react-bootstrap";
 import * as Icon from "react-bootstrap-icons";
 import { useState, useRef, useEffect } from "react";
 import "./RecordItem.scss";
-export function RecordItem({ parentCallBack }) {
-  const handleEdit = (): void => {
-    parentCallBack(true);
+export function RecordItem({ parentCallBack, isEditing }) {
+  const [showDropDownItem, setShowDropDownItem] = useState(false);
+  const dropdownRef = useRef(null);
+  const [isEdit, setIsEdit] = useState(false);
+  const handleEdit = (event): void => {
+    if (event) {
+      event.stopPropagation(); // Stop event propagation
+      parentCallBack(true, event);
+      setShowDropDownItem(false);
+      setIsEdit(!isEdit);
+    }
+  };
+  const handleBack = (event): void => {
+    if (event) {
+      event.stopPropagation();
+      parentCallBack(false, event);
+      setShowDropDownItem(false);
+      setIsEdit(!isEdit);
+    }
   };
   const handleAlert = (value) => {
     if (value === "all") {
@@ -18,8 +34,6 @@ export function RecordItem({ parentCallBack }) {
       window.confirm("Bản ghi này sẽ bị xóa, bạn có muốn tiếp tục ?");
     }
   };
-  const [showDropDownItem, setShowDropDownItem] = useState(false);
-  const dropdownRef = useRef(null);
 
   const handleClick = () => {
     setShowDropDownItem((prevState) => !prevState);
@@ -51,15 +65,30 @@ export function RecordItem({ parentCallBack }) {
           showDropDownItem ? "dropdown-content" : "dropdown-content hidden"
         }
       >
-        <div className="dropdown-item d-flex justify-content-between align-items-center">
-          <Col xs="1"></Col>
-          <Col xs="3" className="d-flex justify-content-between">
-            <Icon.PencilSquare color="#428914" />
-          </Col>
-          <Col xs="8" onClick={handleEdit}>
-            Chỉnh sửa
-          </Col>
-        </div>
+        {!isEditing ? (
+          <div
+            className="dropdown-item d-flex justify-content-between align-items-center"
+            onClick={(event) => handleEdit(event)} // Pass the event object
+          >
+            <Col xs="1"></Col>
+            <Col xs="3" className="d-flex justify-content-between">
+              <Icon.PencilSquare color="#428914" />
+            </Col>
+            <Col xs="8">Chỉnh sửa</Col>
+          </div>
+        ) : (
+          <div
+            className="dropdown-item d-flex justify-content-between align-items-center"
+            onClick={(event) => handleBack(event)} // Pass the event object
+          >
+            <Col xs="1"></Col>
+            <Col xs="3" className="d-flex justify-content-between">
+              <Icon.Arrow90degLeft />
+            </Col>
+            <Col xs="8">Trở về</Col>
+          </div>
+        )}
+
         <div className="dropdown-item d-flex justify-content-between align-items-center">
           <Col xs="1"></Col>
           <Col xs="3" className="d-flex justify-content-between">
