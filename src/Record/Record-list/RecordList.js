@@ -14,7 +14,7 @@ import { RecordItem } from "../Record-item/RecordItem";
 import { useState } from "react";
 import { CategoryCreateForm } from "../../component/CategoryCreateForm/CategoryCreateForm";
 import { BackButton } from "../../component/BackButton/BackButton";
-
+import { ScrollToTop } from "../../component/ScrollToTop/ScrollToTop";
 export function RecordList() {
   const count: int = 0;
   const [isEditing, setIsEditing] = useState(false);
@@ -193,6 +193,7 @@ export function RecordList() {
           </Col>
         </Form>
       </Row>
+      <ScrollToTop />
     </Container>
   );
 }

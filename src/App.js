@@ -10,6 +10,7 @@ import { Record_form } from "./Record/Record_form";
 import { useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Report } from "./Page/Report";
+import { ReportDetail } from "./Report/ReportDetail/ReportDetail";
 function App() {
   const [reduce, setReduced] = useState(true);
 
@@ -33,6 +34,7 @@ function App() {
             <Route path="/record" element={<Record />} />
             <Route path="/addrecord" element={<Record_form />} />
             <Route path="/report" element={<Report />} />
+            <Route path="/reportdetail" element={<ReportDetail />} />
           </Routes>
         </article>
       </div>
