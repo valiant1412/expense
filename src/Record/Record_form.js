@@ -3,6 +3,7 @@ import * as Icon from "react-bootstrap-icons";
 import "./Record_form.scss";
 import { Link } from "react-router-dom";
 import { CategoryCreateForm } from "../component/CategoryCreateForm/CategoryCreateForm";
+import { BackButton } from "../component/BackButton/BackButton";
 export function Record_form() {
   return (
     <>
@@ -10,12 +11,18 @@ export function Record_form() {
         <h1>Tạo bản ghi</h1>
       </Row>
 
-      <Row className="add-record-area"></Row>
       <Row>
         <Form className="add-record-form d-flex flex-column justify-content-between">
+          <Row style={{ marginBottom: "1em" }}>
+            <Col xs="2">
+              <BackButton />
+            </Col>
+            <Col xs="10"></Col>
+          </Row>
+
           <Row>
             <Col xs="7">
-              <CategoryCreateForm roundCorner={false} />
+              <CategoryCreateForm roundCorner={false} feature="record" />
             </Col>
           </Row>
           <Form.Group className="mb-3" controlId="formGroupEmail">

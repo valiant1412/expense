@@ -1,6 +1,6 @@
 import { Container, ToggleButtonGroup, ToggleButton } from "react-bootstrap";
 import "./CategoryCreateForm.scss";
-export function CategoryCreateForm(props: boolean) {
+export function CategoryCreateForm(props) {
   return (
     <ToggleButtonGroup
       className="category-btn-group"
@@ -17,26 +17,28 @@ export function CategoryCreateForm(props: boolean) {
         id="tbg-radio-1"
         value={1}
       >
-        Thu
+        {props.feature == "record" ? "Thu" : "Tháng"}
       </ToggleButton>
       <ToggleButton
         className="category-createForm-btn"
         id="tbg-radio-2"
         value={2}
       >
-        Chi
+        {props.feature == "record" ? "Chi" : "Năm"}
       </ToggleButton>
-      <ToggleButton
-        className={
-          props.roundCorner
-            ? "category-createForm-btn category-btn-list"
-            : "category-createForm-btn"
-        }
-        id="tbg-radio-3"
-        value={3}
-      >
-        Nợ
-      </ToggleButton>
+      {props.feature == "record" ? (
+        <ToggleButton
+          className={
+            props.roundCorner
+              ? "category-createForm-btn category-btn-list"
+              : "category-createForm-btn"
+          }
+          id="tbg-radio-3"
+          value={3}
+        >
+          Nợ
+        </ToggleButton>
+      ) : null}
     </ToggleButtonGroup>
   );
 }

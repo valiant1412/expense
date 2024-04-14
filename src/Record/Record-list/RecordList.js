@@ -13,6 +13,7 @@ import { Link } from "react-router-dom";
 import { RecordItem } from "../Record-item/RecordItem";
 import { useState } from "react";
 import { CategoryCreateForm } from "../../component/CategoryCreateForm/CategoryCreateForm";
+import { BackButton } from "../../component/BackButton/BackButton";
 
 export function RecordList() {
   const count: int = 0;
@@ -74,7 +75,7 @@ export function RecordList() {
       </Row>
       <Row>
         <Col style={{ padding: 0 }} xs="7">
-          <CategoryCreateForm roundCorner={true} />
+          <CategoryCreateForm roundCorner={true} feature="record" />
         </Col>
         <Col xs="2"></Col>
         <Col xs="3">
@@ -88,6 +89,18 @@ export function RecordList() {
       </Row>
       <Row>
         <Form className="board-list d-flex flex-row">
+          <Col xs="1">
+            {isEditing ? (
+              <div
+                style={{ fontSize: "30px", cursor: "pointer" }}
+                className="d-flex justify-content-center"
+                onClick={() => handleEdit(false)}
+              >
+                <Icon.ArrowLeft />
+              </div>
+            ) : null}
+          </Col>
+
           <Col xs="10" className="d-flex flex-column align-items-center">
             <Row className="board-list-elements">
               <Row>
@@ -168,14 +181,13 @@ export function RecordList() {
               </div>
             </Row>
           </Col>
-          <Col xs="2">
+          <Col xs="1">
             {isEditing && (
               <div className="save-and-cancel-btn d-flex justify-content-between">
                 <Icon.FloppyFill
                   onClick={() => handleSave()}
                   color={isModified ? "#0d6efd" : ""}
                 />
-                <Icon.XCircle color="red" onClick={() => handleEdit(false)} />
               </div>
             )}
           </Col>
